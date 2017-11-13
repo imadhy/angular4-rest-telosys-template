@@ -7,7 +7,7 @@
       <div class="panel-heading">
         <h3>
           {{ title }}
-          <a *ngIf="car" class="btn btn-default pull-right" [routerLink]="['/${LCentityName}-form']">
+          <a *ngIf="$LCentityName" class="btn btn-default pull-right" [routerLink]="['/${LCentityName}-form']">
             <span class="glyphicon glyphicon-plus"></span>
           </a>
           <a class="btn btn-default pull-right link-back-list" [routerLink]="['/${LCentityName}-list']">
@@ -19,15 +19,17 @@
 #foreach ( $attrib in $entity.attributes)
 #if ($attrib.isKeyElement() && !$attrib.isFK())
 #if (!$attrib.isAutoIncremented())
-        <div class="col-md-6">
-          <div class="form-group" [ngClass]="{'has-error': !form.controls.${attrib.name}.valid && form.controls.${attrib.name}.touched}">
-            <label for="${LCentityName}ID" class="col-sm-2 control-label">${attrib.name}</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="${LCentityName}ID" placeholder="${attrib.name}" formControlName="${attrib.name}">
-              <span class="help-block" *ngIf="!form.controls.${attrib.name}.valid && form.controls.${attrib.name}.touched">${attrib.name} field is required</span>
+        <fieldset [disabled]="$LCentityName">
+          <div class="col-md-6">
+            <div class="form-group" [ngClass]="{'has-error': !form.controls.${attrib.name}.valid && form.controls.${attrib.name}.touched}">
+              <label for="${LCentityName}ID" class="col-sm-2 control-label">${attrib.name}</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="${LCentityName}ID" placeholder="${attrib.name}" formControlName="${attrib.name}">
+                <span class="help-block" *ngIf="!form.controls.${attrib.name}.valid && form.controls.${attrib.name}.touched">${attrib.name} field is required</span>
+              </div>
             </div>
           </div>
-        </div>
+        </fieldset>
 #else
 		<fieldset disabled>
           <div class="col-md-6">
@@ -61,12 +63,13 @@
         </div>
 #elseif ( ($attrib.isFK() && $attrib.isKeyElement()) || $attrib.isFK() )
 #set($keyAttrib = $attrib.referencedEntity.keyAttribute.name)
-        <div class="col-md-6">
-          <div class="form-group" [ngClass]="{'has-error': !form.controls.${attrib.name}.valid && form.controls.${attrib.name}.touched}">
-            <label for="${LCentityName}${attrib.name}" class="col-sm-2 control-label">${attrib.name}</label>
-            <div class="col-sm-10">
-              <select class="form-control" formControlName="${attrib.name}">
-                <option *ngFor="let ${attrib.name} of ${attrib.name}sData" [value]="${attrib.name}.${keyAttrib}">
+        <fieldset [disabled]="$LCentityName">
+          <div class="col-md-6">
+            <div class="form-group" [ngClass]="{'has-error': !form.controls.${attrib.name}.valid && form.controls.${attrib.name}.touched}">
+              <label for="${LCentityName}${attrib.name}" class="col-sm-2 control-label">${attrib.name}</label>
+              <div class="col-sm-10">
+                <select class="form-control" formControlName="${attrib.name}">
+                  <option *ngFor="let ${attrib.name} of $fn.uncapitalize($attrib.referencedEntity.name)sData" [value]="${attrib.name}.${keyAttrib}">
 #foreach ( $refAttrib in $attrib.referencedEntity.attributes)
 #if ($foreach.count < $attrib.referencedEntity.attributes.size())
 #if ($refAttrib.isKeyElement())
@@ -78,13 +81,14 @@
 #set($options = $options + "{{ ${attrib.name}.${refAttrib.name} }}")
 #end
 #end
-                  $options
-                </option>
-              </select>
-              <span class="help-block" *ngIf="!form.controls.${attrib.name}.valid && form.controls.${attrib.name}.touched">${attrib.name} field is required</span>
+                    $options
+                  </option>
+                </select>
+                <span class="help-block" *ngIf="!form.controls.${attrib.name}.valid && form.controls.${attrib.name}.touched">${attrib.name} field is required</span>
+              </div>
             </div>
           </div>
-        </div>
+        </fieldset>
 #else
         <div class="col-md-6">
           <div class="form-group"#if($attrib.isNotNull()) [ngClass]="{'has-error': !form.controls.${attrib.name}.valid && form.controls.${attrib.name}.touched}"#end>
@@ -106,7 +110,7 @@
         </button>
 #set ($entityNameprefix = "!${LCentityName}?.")
 #set ($entityNameprefixParam = "${LCentityName}?.")
-        <button type="button" class="btn btn-danger pull-right" [disabled]="${entity.keyAttributesNamesAsString(' && ', $entityNameprefix, '')}" (click)="openDeleteModal(${entity.keyAttributesNamesAsString(', ', $$entityNameprefixParam, '')})">
+        <button type="button" class="btn btn-danger pull-right" [disabled]="${entity.keyAttributesNamesAsString(' && ', $entityNameprefix, '')}" (click)="openDeleteModal()">
           <span class="glyphicon glyphicon-trash"></span> Delete
         </button>
       </div>

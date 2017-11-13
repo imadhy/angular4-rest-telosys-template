@@ -9,8 +9,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  private _opened = false;
-  private title: String = 'Home';
+  public _opened = false;
+  public title: String = 'Home';
 
   public navigation = [
 #foreach ($entity in $selectedEntities)

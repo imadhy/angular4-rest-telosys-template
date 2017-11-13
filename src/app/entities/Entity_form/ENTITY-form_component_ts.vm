@@ -172,7 +172,7 @@ export class $formComponentName implements OnInit {
         this._notificationService.success('Success', '${entity.name} added successfuly');
         this._router.navigate(['./${LCentityName}-form', ${entity.keyAttributesNamesAsString(', ', 'this.form.value.', '')}]);
       },
-      error => {1
+      error => {
         if (error.status === this.CONFLICT_ERROR) {
           this._notificationService.error(error.statusText, 'Id already used in database');
         } else if (error.status === this.INTERNAL_SERVER_ERROR) {
