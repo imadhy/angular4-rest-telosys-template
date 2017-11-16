@@ -59,7 +59,7 @@ Everything is now ready to run the application.
 
 The application will fetch the data from the API 'root URI' you defined earlier in the variables of the tempalte configuration (Section 2).
 
-##List of the dependencies install with `npm install`
+## List of the dependencies install with `npm install`
 
  <table>
   <tbody>
