@@ -72,7 +72,7 @@ The application will fetch the data from the API 'root URI' you defined earlier 
       <a href="https://github.com/angular/angular-cli">Angular CLI</a>
       </td>
       <td align="center">
-        <img src="https://img.shields.io/badge/version-1.1.2-brightgreen.svg" />
+        <img src="https://img.shields.io/badge/version-1.3.2-brightgreen.svg" />
       </td>
     </tr>
     <tr>
@@ -82,28 +82,28 @@ The application will fetch the data from the API 'root URI' you defined earlier 
     </tr>
     <tr>
       <td>
-      <a href="https://material.angular.io/">Material 2</a>
+      <a href="https://getbootstrap.com/">Bootstrap</a>
       </td>
       <td align="center">
-        <img src="https://img.shields.io/badge/version-2.0.0.beta.8-brightgreen.svg" />
+        <img src="https://img.shields.io/badge/version-3.3.7-brightgreen.svg" />
       </td>
     </tr>
     <tr>
     	<td colspan="2">
-        	Official Material Design components built for and with Angular.
+        	Bootstrap is a free and open-source front-end web framework for designing websites and web applications.
         </td>
     </tr>
     <tr>
       <td>
-      <a href="https://getmdl.io/">Material Design Lite</a>
+      <a href="https://getbootstrap.com/">ngx-bootstrap</a>
       </td>
       <td align="center">
-        <img src="https://img.shields.io/badge/version-1.3.0-brightgreen.svg" />
+        <img src="https://img.shields.io/badge/version-1.9.3-brightgreen.svg" />
       </td>
     </tr>
     <tr>
     	<td colspan="2">
-        	Material Design Lite lets you add a Material Design look and feel to your websites. It doesn’t rely on any JavaScript frameworks and aims to optimize for cross-device use, gracefully degrade in older browsers, and offer an experience that is immediately accessible
+        	ngx-bootstrap contains all core (and not only) Bootstrap components powered by Angular. So you don't need to include original JS components, but we are using markup and css provided by Bootstrap.
         </td>
     </tr>
     <tr>
